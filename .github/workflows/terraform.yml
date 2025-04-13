@@ -58,7 +58,7 @@ jobs:
         ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
       # if: github.event_name == 'pull_request'
-      run: terraform plan -no-color -backend-config="access_key=$ACCESS_KEY" -backend-config="secret_key=$SECRET_KEY" -backend-config="bucket=$BUCKET" -backend-config="prefix=" -backend-config="key=$KEY" -backend-config="region=$REGION" -backend-config="tablestore_endpoint=$TABLESTORE_ENDPOINT" -backend-config="tablestore_table=$TABLESTORE_TABLE"
+      run: terraform plan -no-color
     
     # # Add a comment to pull requests with plan results
     # - name: add-plan-comment
