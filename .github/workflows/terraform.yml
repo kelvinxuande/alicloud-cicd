@@ -59,6 +59,19 @@ jobs:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
       # if: github.event_name == 'pull_request'
       run: terraform plan -no-color
+
+      # On push to main, build or change infrastructure according to Terraform configuration files
+    - name: Terraform Apply
+      env:
+        BUCKET: ${{ secrets.BUCKET }}
+        KEY: ${{ secrets.KEY }}
+        REGION: ${{ secrets.REGION }}
+        TABLESTORE_ENDPOINT: ${{ secrets.TABLESTORE_ENDPOINT }}
+        TABLESTORE_TABLE: ${{ secrets.STORAGE_ACCOUNT }}
+        ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      # if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run: terraform apply -auto-approve
     
     # # Add a comment to pull requests with plan results
     # - name: add-plan-comment
@@ -89,13 +102,3 @@ jobs:
     #         repo: context.repo.repo,
     #         body: output
     #       })
-
-    #   # On push to main, build or change infrastructure according to Terraform configuration files
-    # - name: Terraform Apply
-    #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    #   env:
-    #     ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-    #     ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
-    #     ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-    #     ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-    #   run: terraform apply -auto-approve
