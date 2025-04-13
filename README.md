@@ -1,8 +1,8 @@
 # alicloud-cicd
 
 Prerequisites:
-- OSS Bucket created,
-- a OTS Instance and a OTS TableStore. The TableStore must have a primary key named LockID of type String.
+- OSS Bucket created - Ensure that Bucket Policy Allows RAM user.
+- a OTS Instance and a OTS TableStore - The TableStore must have a primary key named LockID of type String.
 
 In Settings > Security > Secrets and variables > Actions > Actions secrets and variables, prepare:
 - ACCESS_KEY
