@@ -3,8 +3,9 @@ name: 'Terraform'
 # on: [push, pull_request]
 # see: https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule
 on:
+  push:  # also on push
   schedule:
-    - cron: "0 * * * *"   # <=== Change this value
+    - cron: "0 * * * *"   # <=== Change this value, currently runs once every hour
 
 env:
   TF_LOG: INFO
@@ -31,6 +32,11 @@ jobs:
       uses: hashicorp/setup-terraform@v1
       with:
         terraform_version: 1.11.4
+
+    # simulate running some other commands
+    - name: Setup Commands
+      id: setup
+      run: ls
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
