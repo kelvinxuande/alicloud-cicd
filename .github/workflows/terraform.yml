@@ -4,8 +4,8 @@ name: 'Terraform'
 # see: https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule
 on:
   push:  # also on push
-  schedule:
-    - cron: "0 * * * *"   # <=== Change this value (0 0 * */3 *), currently runs once every hour
+  # schedule:
+  #   - cron: "0 * * * *"   # <=== Change this value (0 0 * */3 *), currently runs once every hour
 
 env:
   TF_LOG: INFO
